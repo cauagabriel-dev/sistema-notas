@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
 using namespace std;
 
 int main()
 {
+    SetConsoleOutputCP (65001);
 
     // Entrada - Declaração das Variáveis
     string nomes[20];
@@ -57,6 +59,31 @@ int main()
     {
         cout << "  " << i + 1 << ". " << nomes[i] << endl;
     }
+
+    cout << "\n=== RELATÓRIO ===" << endl;
+    int aprovados = 0, recuperacao = 0, reprovados = 0;
+
+    for (int i = 0; i < qtdAlunos; i++)
+    {
+        cout << nomes[i] << " - Media: " << media[i] << " - ";
+        if (media[i] >= 7)
+        {
+            cout << "Aprovado" << endl;
+            aprovados++;
+        }
+        else if (media[i] >= 5)
+        {
+            cout << "Recuperação" << endl;
+            recuperacao++;
+        }
+        else
+        {
+            cout << "Reprovado" << endl;
+            reprovados++;
+        }
+    }
+
+    cout << "\nResumo: " << aprovados << " aprovados, " << recuperacao << " recuperação, " << reprovados << " reprovados." << endl;
 
     return 0;
 }
