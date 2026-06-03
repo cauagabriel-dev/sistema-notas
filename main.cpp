@@ -44,8 +44,15 @@ int main()
 
         for (int i = 0; i < qtdAlunos; i++)
         {
-            cout << "Nome do aluno " << i + 1 << ": ";
-            getline(cin, nomes[i]);
+            do
+            {
+                cout << "Nome do aluno " << i + 1 << ": ";
+                getline(cin, nomes[i]);
+                if (nomes[i] == "") //Opcional A
+                {
+                    cout << "Erro! O nome não pode ficar em branco. Digite novamente\n" << endl;
+                }
+            } while (nomes[i] == "");
         }
 
         // NOTAS E MÉDIAS (Commit 2)
@@ -104,7 +111,7 @@ int main()
             if (arquivo.is_open())
             {
                 arquivo << "==== RELATÓRIO ====" << endl;
-                
+
                 time_t agora = time(0);
                 char *dataHora = ctime(&agora);
                 arquivo << "Data do relatorio: " << dataHora << endl;

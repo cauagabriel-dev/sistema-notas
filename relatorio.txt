@@ -1,5 +1,7 @@
 ==== RELATÓRIO ====
-Cau� - Média: 8.5 - Aprovado
-Gabriel - Média: 8.5 - Aprovado
+Data do relatorio: Wed Jun 03 10:06:09 2026
 
-Resumo: 2 aprovados, 0 em recuperação, 0 reprovados.
+Caua - Média: 9 - Aprovado
+Joao - Média: 6 - Recuperação
+
+Resumo: 1 aprovados, 1 em recuperação, 0 reprovados.
