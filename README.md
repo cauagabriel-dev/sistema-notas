@@ -36,8 +36,4 @@ O código foi estruturado de forma incremental seguindo as boas práticas de ver
 
 ## Autor
 
-<<<<<<< HEAD
 Cauã Gabriel Oliveira da Silva - Turma LOPAL 2026
-=======
-Cauã Gabriel Oliveira da Silva - Turma LOPAL 2026
->>>>>>> d00fd520d60d18e2025c0573810ed38736086073
