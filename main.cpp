@@ -2,6 +2,7 @@
 #include <string>
 #include <windows.h>
 #include <fstream> // Serve para trabalhar com arquivos
+#include <ctime>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ int main()
     float media[20];
     int qtdDisciplinas = 0;
     int opcaoInicial;
-    
+
     // Variáveis para eu iniciar o switch
     int aprovados = 0, recuperacao = 0, reprovados = 0;
 
@@ -72,7 +73,9 @@ int main()
 
         // CLASSIFICAÇÃO E RELATÓRIO (Commit 3)
         cout << "\n=== RELATÓRIO ===" << endl;
-        aprovados = 0; recuperacao = 0; reprovados = 0;
+        aprovados = 0;
+        recuperacao = 0;
+        reprovados = 0;
 
         for (int i = 0; i < qtdAlunos; i++)
         {
@@ -101,12 +104,20 @@ int main()
             if (arquivo.is_open())
             {
                 arquivo << "==== RELATÓRIO ====" << endl;
+                
+                time_t agora = time(0);
+                char *dataHora = ctime(&agora);
+                arquivo << "Data do relatorio: " << dataHora << endl;
+
                 for (int i = 0; i < qtdAlunos; i++)
                 {
                     arquivo << nomes[i] << " - Média: " << media[i] << " - ";
-                    if (media[i] >= 7)       arquivo << "Aprovado" << endl;
-                    else if (media[i] >= 5)  arquivo << "Recuperação" << endl;
-                    else                     arquivo << "Reprovado" << endl;
+                    if (media[i] >= 7)
+                        arquivo << "Aprovado" << endl;
+                    else if (media[i] >= 5)
+                        arquivo << "Recuperação" << endl;
+                    else
+                        arquivo << "Reprovado" << endl;
                 }
                 arquivo << "\nResumo: " << aprovados << " aprovados, " << recuperacao << " em recuperação, " << reprovados << " reprovados." << endl;
                 arquivo.close();
