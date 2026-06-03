@@ -24,7 +24,7 @@ int main()
     // LEITURA DE ALUNOS (Commit 1)
     cout << "=== SISTEMA DE NOTAS v4.0 ===" << endl;
     cout << "1 - Novo relatório" << endl;
-    cout << "2 - Ver relatório salvos" << endl;
+    cout << "2 - Ver relatório salvo" << endl;
     cout << "3 - Sobre o sistema" << endl;
     cout << "4 - Sair" << endl;
     cout << "Escolha uma opção: ";
@@ -34,6 +34,7 @@ int main()
     switch (opcaoInicial)
     {
     case 1:
+    {
         do
         {
             cout << "\nQuantidade de alunos (1 a 20): ";
@@ -48,9 +49,10 @@ int main()
             {
                 cout << "Nome do aluno " << i + 1 << ": ";
                 getline(cin, nomes[i]);
-                if (nomes[i] == "") //Opcional A
+                if (nomes[i] == "") // Opcional A
                 {
-                    cout << "Erro! O nome não pode ficar em branco. Digite novamente\n" << endl;
+                    cout << "Erro! O nome não pode ficar em branco. Digite novamente\n"
+                         << endl;
                 }
             } while (nomes[i] == "");
         }
@@ -83,6 +85,45 @@ int main()
         aprovados = 0;
         recuperacao = 0;
         reprovados = 0;
+
+        int indiceMaior = 0;
+        int indiceMenor = 0;
+
+        for (int i = 0; i < qtdAlunos; i++)
+        {
+            cout << nomes[i] << " - Media: " << media[i] << " - ";
+            if (media[i] >= 7)
+            {
+                cout << "Aprovado" << endl;
+                aprovados++;
+            }
+            else if (media[i] >= 5)
+            {
+                cout << "Recuperação" << endl;
+                recuperacao++;
+            }
+            else
+            {
+                cout << "Reprovado" << endl;
+                reprovados++;
+            }
+
+            if (media[i] > media[indiceMaior])
+            {
+                indiceMaior = i;
+            }
+
+            if (media[i] < media[indiceMenor])
+            {
+                indiceMenor = i;
+            }
+        }
+
+        cout << "\nResumo: " << aprovados << " aprovados, " << recuperacao << " em recuperação, " << reprovados << " reprovados." << endl;
+
+        // DESTAQUES EM NOTAS
+        cout << "Maior média: " << nomes[indiceMaior] << " (" << media[indiceMaior] << ")" << endl;
+        cout << "Menor média: " << nomes[indiceMenor] << " (" << media[indiceMenor] << ")" << endl;
 
         for (int i = 0; i < qtdAlunos; i++)
         {
@@ -135,7 +176,8 @@ int main()
                 cout << "Erro ao criar arquivo." << endl;
             }
         }
-        break;
+    }
+    break;
 
     case 2:
         // LEITURA E ARQUIVO (Commit 5)
@@ -144,7 +186,6 @@ int main()
             if (leitura.is_open())
             {
                 string linha;
-                cout << "\n=== LENDO RELATÓRIO SALVO ===" << endl;
                 while (getline(leitura, linha))
                 {
                     cout << linha << endl;
@@ -153,7 +194,7 @@ int main()
             }
             else
             {
-                cout << "\nNenhum relatório encontrado. Crie um novo primeiro (Opção 1)." << endl;
+                cout << "\nNenhum relatório encontrado. Crie um novo antes (Opção 1)." << endl;
             }
         }
         break;

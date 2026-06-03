@@ -1,7 +1,8 @@
 ==== RELATÓRIO ====
-Data do relatorio: Wed Jun 03 10:06:09 2026
+Data do relatorio: Wed Jun 03 11:03:44 2026
 
 Caua - Média: 9 - Aprovado
-Joao - Média: 6 - Recuperação
+Leonardo - Média: 8.5 - Aprovado
+Joao - Média: 8 - Aprovado
 
-Resumo: 1 aprovados, 1 em recuperação, 0 reprovados.
+Resumo: 6 aprovados, 0 em recuperação, 0 reprovados.
