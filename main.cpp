@@ -26,7 +26,8 @@ int main()
     cout << "1 - Novo relatório" << endl;
     cout << "2 - Ver relatório salvo" << endl;
     cout << "3 - Sobre o sistema" << endl;
-    cout << "4 - Sair" << endl;
+    cout << "4 - Relatório de reprovados" << endl;
+    cout << "5 - Sair" << endl;
     cout << "Escolha uma opção: ";
     cin >> opcaoInicial;
 
@@ -49,7 +50,7 @@ int main()
             {
                 cout << "Nome do aluno " << i + 1 << ": ";
                 getline(cin, nomes[i]);
-                if (nomes[i] == "") // Opcional A
+                if (nomes[i] == "") // Opcional A (Commit 7)
                 {
                     cout << "Erro! O nome não pode ficar em branco. Digite novamente\n"
                          << endl;
@@ -86,6 +87,7 @@ int main()
         recuperacao = 0;
         reprovados = 0;
 
+        //DESTAQUES EM NOTAS (Commit 8)
         int indiceMaior = 0;
         int indiceMenor = 0;
 
@@ -121,7 +123,6 @@ int main()
 
         cout << "\nResumo: " << aprovados << " aprovados, " << recuperacao << " em recuperação, " << reprovados << " reprovados." << endl;
 
-        // DESTAQUES EM NOTAS
         cout << "Maior média: " << nomes[indiceMaior] << " (" << media[indiceMaior] << ")" << endl;
         cout << "Menor média: " << nomes[indiceMenor] << " (" << media[indiceMenor] << ")" << endl;
 
@@ -208,6 +209,46 @@ int main()
         break;
 
     case 4:
+        // RELATÓRIO DE REPROVADOS (Commit 9)
+        {
+            if (qtdAlunos == 0)
+            {
+                cout << "\nErro: Não há alunos cadastrados no sistema para filtrar. Execute a Opção 1 primeiro!" << endl;
+            }
+            else
+            {
+                ofstream arquivoReprovados("reprovados.txt");
+
+                if (arquivoReprovados.is_open())
+                {
+                    arquivoReprovados << "==== RELATÓRIO DE REPROVADOS ====" << endl;
+                    int contadorReprovados = 0;
+
+                    for (int i = 0; i < qtdAlunos; i++)
+                    {
+                        // Filtra apenas quem ficou com média abaixo de 5
+                        if (media[i] < 5)
+                        {
+                            arquivoReprovados << nomes[i] << " - Média: " << media[i] << " (Reprovado)" << endl;
+                            contadorReprovados++;
+                        }
+                    }
+
+                    arquivoReprovados << "\nTotal de alunos reprovados: " << contadorReprovados << endl;
+                    arquivoReprovados.close();
+
+                    cout << "\nRelatório de reprovados gerado com sucesso em reprovados.txt!" << endl;
+                    cout << "Foram encontrados " << contadorReprovados << " alunos reprovados." << endl;
+                }
+                else
+                {
+                    cout << "Erro ao criar o arquivo de reprovados." << endl;
+                }
+            }
+        }
+        break;
+
+    case 5:
         cout << "\nSaindo... Até logo!" << endl;
         break;
 
